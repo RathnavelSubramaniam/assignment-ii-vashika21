@@ -1,0 +1,64 @@
+﻿---
+title: "assignment 2"
+author: "vashika"
+date: "2022-11-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+library(nycflights13)
+```
+1.	Sort flights to find the fastest flights
+```{r}
+arrange(flights,arr_time)
+```
+ANSWER:
+ arrival time is used to find the fastest flights.
+ 
+ 2.	Compare dep_time, sched_dep_time, and dep_delay. How would you expect those three numbers to be related?
+```{r}
+select(flights,dep_time,sched_dep_time,dep_delay)
+```
+ANSWER:
+ here the dep_delay is found by subtracting sched_dep_time from dep_time. by this way three numbers are related.
+ 
+ 3.	Brainstorm at least 5 different ways to assess the typical delay characteristics of a group of flights. Consider the following scenarios:
+a.	A flight is 15 minutes early 50% of the time, and 15 minutes late 50% of the time.
+b.	A flight is always 10 minutes late.
+c.	A flight is 30 minutes early 50% of the time, and 30 minutes late 50% of the time.
+d.	99% of the time a flight is on time. 1% of the time it’s 2 hours late
+
+  
+4.	Which plane (tailnum) has the worst on-time record?
+```{r}
+arrange(flights,desc(arr_delay))
+```
+ANSWER:
+ The plain with tailnum N384HA seems to be worst on time record.
+ 
+5.	Brainstorm as many ways as possible to select dep_time, dep_delay, arr_time, and arr_delay from flights.
+
+```{r}
+select(flights,"dep_time","dep_delay","arr_time","arr_delay")
+```
+```{r}
+select(flights,4,6,7,9)
+```
+```{r}
+select(flights,starts_with("dep_"))
+```
+```{r}
+select(flights,starts_with("arr_"))
+```
+```{r}
+select(flights,ends_with("_time"),ends_with("_delay"),-c(sched_arr_time,sched_dep_time,air_time))
+```
+
+ 
+
+
